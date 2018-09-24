@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ differentia-javaica - compare java source files as logical structure
+  ~
+  ~ Copyright (C) 2018  Kazimierz Pogoda
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.xemantic.differentia</groupId>
+  <artifactId>differentia-javaica</artifactId>
+  <version>1.3-SNAPSHOT</version>
+
+  <description>Finding differences between two Java source codes</description>
+
+  <url>https://github.com/morisil/differentia-javaica</url>
+  <inceptionYear>2009</inceptionYear>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr-runtime</artifactId>
+      <version>3.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.5</version>
+    </dependency>
+    <dependency>
+    	<groupId>javax.annotation</groupId>
+    	<artifactId>jsr250-api</artifactId>
+    	<version>1.0</version>
+    	<scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <breakiterator>true</breakiterator>
+          <encoding>UTF-8</encoding>
+          <links>
+            <link>http://java.sun.com/javase/6/docs/api/</link>
+            <link>http://commons.apache.org/lang/api-2.4/</link>
+            <link>http://junit.sourceforge.net/javadoc/</link>
+          </links>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>generate-java-parser</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <includeProjectDependencies>false</includeProjectDependencies>
+              <includePluginDependencies>true</includePluginDependencies>
+              <executableDependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr</artifactId>
+              </executableDependency>
+              <mainClass>org.antlr.Tool</mainClass>
+              <arguments>
+                <argument>-report</argument>
+                <argument>src/main/java/com/xemantic/differentia/antlr/Java.g</argument>
+              </arguments>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr</artifactId>
+                <version>3.1.1</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
