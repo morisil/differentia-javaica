@@ -32,61 +32,61 @@ import com.xemantic.differentia.antlr.JavaLexer;
  */
 public class DifferentiaUtils {
 
-	private DifferentiaUtils() {
-		/* util class, non-instantiable */
-	}
+  private DifferentiaUtils() {
+    /* util class, non-instantiable */
+  }
 
-	/**
-	 * Prepares comparison result according to text {@link Position} associated with given trees nodes.
-	 *
-	 * @param expected the expected source tree node.
-	 * @param actual the actual source tree node.
-	 * @return the comparison result.
-	 */
-    public static ComparisonResult getDifferenceResult(Tree expected, Tree actual) {
-    	return new ComparisonResult(getTextPosition(expected), getTextPosition(actual));
+  /**
+   * Prepares comparison result according to text {@link Position} associated with given trees nodes.
+   *
+   * @param expected the expected source tree node.
+   * @param actual   the actual source tree node.
+   * @return the comparison result.
+   */
+  public static ComparisonResult getDifferenceResult(Tree expected, Tree actual) {
+    return new ComparisonResult(getTextPosition(expected), getTextPosition(actual));
+  }
+
+  /**
+   * Returns text position of the given tree node.
+   *
+   * @param tree the source tree node.
+   * @return the text position.
+   */
+  public static Position getTextPosition(Tree tree) {
+    return new Position(tree.getLine(), tree.getCharPositionInLine());
+  }
+
+  /**
+   * Creates parser from given stream.
+   *
+   * @param stream the char stream.
+   * @return the java parser.
+   */
+  public static JavaParser getParser(CharStream stream) {
+    final JavaLexer lexer = new JavaLexer(stream);
+    final CommonTokenStream in = new CommonTokenStream(lexer);
+    return new JavaParser(in);
+  }
+
+  /**
+   * Prepares message which describes difference between compared Java sources.
+   *
+   * @param expectedId id of the expected source.
+   * @param actualId   id of the actual source.
+   * @param result     the comparison result.
+   * @return textual representation of difference.
+   */
+  public static String getDifferenceMessage(String expectedId, final String actualId, final ComparisonResult result) {
+    final String msg;
+    if (result.isDifferent()) {
+      final Position expectedPosition = result.getDifferencePositionInExpected();
+      final Position actualPosition = result.getDifferencePositionInActual();
+      msg = "Difference[" + expectedId + expectedPosition + "<->" + actualId + actualPosition + "]";
+    } else {
+      msg = "No difference[" + expectedId + "<->" + actualId + "]";
     }
-
-    /**
-     * Returns text position of the given tree node.
-     *
-     * @param tree the source tree node.
-     * @return the text position.
-     */
-    public static Position getTextPosition(Tree tree) {
-    	return new Position(tree.getLine(), tree.getCharPositionInLine());
-    }
-
-    /**
-     * Creates parser from given stream.
-     *
-     * @param stream the char stream.
-     * @return the java parser.
-     */
-    public static JavaParser getParser(CharStream stream) {
-        final JavaLexer lexer = new JavaLexer(stream);
-        final CommonTokenStream in = new CommonTokenStream(lexer);
-        return new JavaParser(in);
-    }
-
-	/**
-	 * Prepares message which describes difference between compared Java sources.
-	 *
-	 * @param expectedId id of the expected source.
-	 * @param actualId id of the actual source.
-	 * @param result the comparison result.
-	 * @return textual representation of difference.
-	 */
-	public static String getDifferenceMessage(String expectedId, final String actualId, final ComparisonResult result) {
-		final String msg;
-		if (result.isDifferent()) {
-			final Position expectedPosition = result.getDifferencePositionInExpected();
-			final Position actualPosition = result.getDifferencePositionInActual();
-			msg = "Difference[" + expectedId + expectedPosition + "<->" + actualId + actualPosition + "]";
-		} else {
-			msg = "No difference[" + expectedId + "<->" + actualId + "]";
-		}
-		return msg;
-	}
+    return msg;
+  }
 
 }

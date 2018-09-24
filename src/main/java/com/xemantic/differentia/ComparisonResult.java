@@ -25,59 +25,58 @@ package com.xemantic.differentia;
  */
 public class ComparisonResult {
 
-	/**
-	 * Indicates no difference result.
-	 */
-	public static final ComparisonResult NO_DIFFERENCE = new ComparisonResult(null, null);
+  /**
+   * Indicates no difference result.
+   */
+  public static final ComparisonResult NO_DIFFERENCE = new ComparisonResult(null, null);
 
-	private final Position differencePositionInExpected;
+  private final Position differencePositionInExpected;
 
-	private final Position differencePositionInActual;
+  private final Position differencePositionInActual;
 
-	/**
-	 * Creates comparison result.
-	 *
-	 * @param differencePositionInExpected the position of encountered difference in expected file.
-	 * @param differencePositionInActual the position of encountered difference in actual file.
-	 *
-	 * @throws IllegalArgumentException if one of the parameters is <code>null</code> and the other is not.
-	 */
-	public ComparisonResult(
-			Position differencePositionInExpected,
-			Position differencePositionInActual
-	) {
-		if ((differencePositionInExpected == null) && (differencePositionInActual != null)) {
-			throw new IllegalArgumentException("Difference positions should either have values or both be null");
-		}
-		this.differencePositionInExpected = differencePositionInExpected;
-		this.differencePositionInActual = differencePositionInActual;
-	}
+  /**
+   * Creates comparison result.
+   *
+   * @param differencePositionInExpected the position of encountered difference in expected file.
+   * @param differencePositionInActual   the position of encountered difference in actual file.
+   * @throws IllegalArgumentException if one of the parameters is <code>null</code> and the other is not.
+   */
+  public ComparisonResult(
+      Position differencePositionInExpected,
+      Position differencePositionInActual
+  ) {
+    if ((differencePositionInExpected == null) && (differencePositionInActual != null)) {
+      throw new IllegalArgumentException("Difference positions should either have values or both be null");
+    }
+    this.differencePositionInExpected = differencePositionInExpected;
+    this.differencePositionInActual = differencePositionInActual;
+  }
 
-	/**
-	 * Returns difference flag.
-	 *
-	 * @return <code>true</code> if code differs, <code>false</code> otherwise.
-	 */
-	public boolean isDifferent() {
-		return (differencePositionInExpected != null);
-	}
+  /**
+   * Returns difference flag.
+   *
+   * @return <code>true</code> if code differs, <code>false</code> otherwise.
+   */
+  public boolean isDifferent() {
+    return (differencePositionInExpected != null);
+  }
 
-	/**
-	 * Returns difference position in expected file.
-	 *
-	 * @return the differencePositionInExpected
-	 */
-	public Position getDifferencePositionInExpected() {
-		return differencePositionInExpected;
-	}
+  /**
+   * Returns difference position in expected file.
+   *
+   * @return the differencePositionInExpected
+   */
+  public Position getDifferencePositionInExpected() {
+    return differencePositionInExpected;
+  }
 
-	/**
-	 * Returns difference position in actual file.
-	 *
-	 * @return the differencePositionInActual
-	 */
-	public Position getDifferencePositionInActual() {
-		return differencePositionInActual;
-	}
+  /**
+   * Returns difference position in actual file.
+   *
+   * @return the differencePositionInActual
+   */
+  public Position getDifferencePositionInActual() {
+    return differencePositionInActual;
+  }
 
 }

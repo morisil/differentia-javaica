@@ -29,87 +29,84 @@ import org.junit.Assert;
  * JUnit specific assert.
  * <p>
  * Created on Jan 19, 2009
- * 
+ *
  * @see Assert
  */
 public class DifferentiaAssert {
 
-	/**
-	 * Asserts that two java source codes are equal.
-	 *
-	 * @param actual the path to expected java source code.
-	 * @param expected the path to actual java source code.
-	 */
-	public static void assertSourcesEqual(String expected, String actual) {
-		assertSourcesEqual(expected, actual, false, false);
-	}
+  /**
+   * Asserts that two java source codes are equal.
+   *
+   * @param actual   the path to expected java source code.
+   * @param expected the path to actual java source code.
+   */
+  public static void assertSourcesEqual(String expected, String actual) {
+    assertSourcesEqual(expected, actual, false, false);
+  }
 
-	/**
-	 * Asserts that two java source codes are equal but package names and
-	 * content of <code>@Generated</code> annotation may differ.
-	 * 
-	 * @param actual the path to expected java source code.
-	 * @param expected the path to actual java source code.
-	 * @param debug print syntax tree to standard output if true
-	 * @param relaxed true if package names and <code>@Generated</code> annotation
-	 * 				  may differ, false otherwise
-	 */
-	public static void assertSourcesEqual(String expected, String actual, boolean debug, boolean relaxed) {
-		final Differentia differentia = new Differentia();
-		differentia.setDebug(debug);
-		differentia.setRelaxed(relaxed);
-		final ComparisonResult result;
-		try {
-			result = differentia.compare(expected, actual);
-		} catch (IOException e) {
-			throw new RuntimeException("IO Exception while comparing java sources", e);
-		} catch (RecognitionException e) {
-			throw new RuntimeException("Parsing error while comparing java sources", e);
-		}
-		if (result.isDifferent()) {
-			Assert.fail("Java source codes differ: " + DifferentiaUtils.getDifferenceMessage(expected, actual, result));
-		}
-	}
+  /**
+   * Asserts that two java source codes are equal but package names and
+   * content of <code>@Generated</code> annotation may differ.
+   *
+   * @param actual   the path to expected java source code.
+   * @param expected the path to actual java source code.
+   * @param debug    print syntax tree to standard output if true
+   * @param relaxed  true if package names and <code>@Generated</code> annotation
+   *                 may differ, false otherwise
+   */
+  public static void assertSourcesEqual(String expected, String actual, boolean debug, boolean relaxed) {
+    final Differentia differentia = new Differentia();
+    differentia.setDebug(debug);
+    differentia.setRelaxed(relaxed);
+    final ComparisonResult result;
+    try {
+      result = differentia.compare(expected, actual);
+    } catch (IOException e) {
+      throw new RuntimeException("IO Exception while comparing java sources", e);
+    } catch (RecognitionException e) {
+      throw new RuntimeException("Parsing error while comparing java sources", e);
+    }
+    if (result.isDifferent()) {
+      Assert.fail("Java source codes differ: " + DifferentiaUtils.getDifferenceMessage(expected, actual, result));
+    }
+  }
 
-	public static void assertSourcesEqual(Reader expected, Reader actual) {
-		assertSourcesEqual(expected, actual, false, false);
-	}
-	
-	public static void assertSourcesEqual(Reader expected, Reader actual, boolean debug, boolean relaxed) {
-		final Differentia differentia = new Differentia();
-		differentia.setDebug(debug);
-		differentia.setRelaxed(relaxed);
-		final ComparisonResult result;
-		try {
-			result = differentia.compare(expected, actual);
-		} catch (IOException e) {
-			throw new RuntimeException("IO Exception while comparing java sources", e);
-		} catch (RecognitionException e) {
-			throw new RuntimeException("Parsing error while comparing java sources", e);
-		}
-		if (result.isDifferent()) {
-			Assert.fail("Java source codes differ: " + DifferentiaUtils.getDifferenceMessage("expected", "actual", result));
-		}
-	}
+  public static void assertSourcesEqual(Reader expected, Reader actual) {
+    assertSourcesEqual(expected, actual, false, false);
+  }
 
-	public static void assertSourcesAsStringsEqual(String expected, String actual) {
-		assertSourcesAsStringsEqual(expected, actual, false, false);
-	}
+  public static void assertSourcesEqual(Reader expected, Reader actual, boolean debug, boolean relaxed) {
+    final Differentia differentia = new Differentia();
+    differentia.setDebug(debug);
+    differentia.setRelaxed(relaxed);
+    final ComparisonResult result;
+    try {
+      result = differentia.compare(expected, actual);
+    } catch (IOException e) {
+      throw new RuntimeException("IO Exception while comparing java sources", e);
+    } catch (RecognitionException e) {
+      throw new RuntimeException("Parsing error while comparing java sources", e);
+    }
+    if (result.isDifferent()) {
+      Assert.fail("Java source codes differ: " + DifferentiaUtils.getDifferenceMessage("expected", "actual", result));
+    }
+  }
 
-	/**
-	 * Asserts that two java source codes are equal.
-	 * 
-	 * @param actual
-	 *            the path to expected java source code.
-	 * @param expected
-	 *            the path to actual java source code.
-	 * @param relaxed
-	 *            if <code>true</code> comparison will omit values of parameter
-	 *            <code>date</code> and parameter <code>comment</code> from
-	 *            annotation <code>Generated</code>.
-	 */
-	public static void assertSourcesAsStringsEqual(String expected, String actual, final boolean debug, final boolean relaxed) {
-		assertSourcesEqual(new StringReader(expected), new StringReader(actual), debug, relaxed);
-	}
+  public static void assertSourcesAsStringsEqual(String expected, String actual) {
+    assertSourcesAsStringsEqual(expected, actual, false, false);
+  }
+
+  /**
+   * Asserts that two java source codes are equal.
+   *
+   * @param actual   the path to expected java source code.
+   * @param expected the path to actual java source code.
+   * @param relaxed  if <code>true</code> comparison will omit values of parameter
+   *                 <code>date</code> and parameter <code>comment</code> from
+   *                 annotation <code>Generated</code>.
+   */
+  public static void assertSourcesAsStringsEqual(String expected, String actual, final boolean debug, final boolean relaxed) {
+    assertSourcesEqual(new StringReader(expected), new StringReader(actual), debug, relaxed);
+  }
 
 }

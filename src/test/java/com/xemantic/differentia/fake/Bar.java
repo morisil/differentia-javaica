@@ -19,53 +19,52 @@
 package com.xemantic.differentia.fake;
 
 /**
- *
  * <p>
  * Created on Jan 19, 2009
  */
 public class Bar {
 
-	private final String id;
+  private final String id;
 
-	private String name;
+  private String name;
 
-	/**
-	 *  Creates Bar.
-	 *
-	 * @param id the id.
-	 */
-	public Bar(String id) {
-		if (id == null) {
-			throw new IllegalArgumentException("id cannot be null");
-		}
-		this.id = id;
-	}
+  /**
+   * Creates Bar.
+   *
+   * @param id the id.
+   */
+  public Bar(String id) {
+    if (id == null) {
+      throw new IllegalArgumentException("id cannot be null");
+    }
+    this.id = id;
+  }
 
-	/**
-	 * Return id.
-	 *
-	 * @return the id.
-	 */
-	public String getId() {
-		return id;
-	}
+  /**
+   * Return id.
+   *
+   * @return the id.
+   */
+  public String getId() {
+    return id;
+  }
 
-	/**
-	 * Returns name.
-	 *
-	 * @return the name.
-	 */
-	public String getName() {
-		return name;
-	}
+  /**
+   * Returns name.
+   *
+   * @return the name.
+   */
+  public String getName() {
+    return name;
+  }
 
-	/**
-	 * Sets name.
-	 *
-	 * @param name the name to set.
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+  /**
+   * Sets name.
+   *
+   * @param name the name to set.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
 
 }

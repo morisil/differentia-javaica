@@ -25,47 +25,47 @@ package com.xemantic.differentia.fake;
  */
 public class Foo {
 
-	private final String id;
+  private final String id;
 
-	private String name;
+  private String name;
 
-	/**
-	 *  Creates Foo.
-	 *
-	 * @param id the id.
-	 */
-	public Foo(String id) {
-		if (id == null) {
-			throw new IllegalArgumentException("id cannot be null");
-		}
-		this.id = id;
-	}
+  /**
+   * Creates Foo.
+   *
+   * @param id the id.
+   */
+  public Foo(String id) {
+    if (id == null) {
+      throw new IllegalArgumentException("id cannot be null");
+    }
+    this.id = id;
+  }
 
-	/**
-	 * Return id.
-	 *
-	 * @return the id.
-	 */
-	public String getId() {
-		return id;
-	}
+  /**
+   * Return id.
+   *
+   * @return the id.
+   */
+  public String getId() {
+    return id;
+  }
 
-	/**
-	 * Returns name.
-	 *
-	 * @return the name.
-	 */
-	public String getName() {
-		return name;
-	}
+  /**
+   * Returns name.
+   *
+   * @return the name.
+   */
+  public String getName() {
+    return name;
+  }
 
-	/**
-	 * Sets name.
-	 *
-	 * @param name the name to set.
-	 */
-	public void setName(String name) {
-		name = name;
-	}
+  /**
+   * Sets name.
+   *
+   * @param name the name to set.
+   */
+  public void setName(String name) {
+    name = name;
+  }
 
 }

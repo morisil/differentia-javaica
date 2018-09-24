@@ -27,51 +27,51 @@ import org.apache.commons.lang.Validate;
  */
 public class Position {
 
-	private final int line;
+  private final int line;
 
-	private final int column;
+  private final int column;
 
-	/**
-	 * Creates position object with given coordinates.
-	 *
-	 * @param line the line.
-	 * @param column the column.
-	 * @throws IllegalArgumentException if the <code>line</code> or the <code>column</code> is negative number.
-	 */
-	public Position(int line, final int column) {
-		Validate.isTrue(line >= 0, "line cannot be negative");
-		Validate.isTrue(column >= 0, "column cannot be negative");
-		this.line = line;
-		this.column = column;
-	}
+  /**
+   * Creates position object with given coordinates.
+   *
+   * @param line   the line.
+   * @param column the column.
+   * @throws IllegalArgumentException if the <code>line</code> or the <code>column</code> is negative number.
+   */
+  public Position(int line, final int column) {
+    Validate.isTrue(line >= 0, "line cannot be negative");
+    Validate.isTrue(column >= 0, "column cannot be negative");
+    this.line = line;
+    this.column = column;
+  }
 
-	/**
-	 * Returns line.
-	 *
-	 * @return the line.
-	 */
-	public int getLine() {
-		return line;
-	}
+  /**
+   * Returns line.
+   *
+   * @return the line.
+   */
+  public int getLine() {
+    return line;
+  }
 
-	/**
-	 * Returns column.
-	 *
-	 * @return the column.
-	 */
-	public int getColumn() {
-		return column;
-	}
+  /**
+   * Returns column.
+   *
+   * @return the column.
+   */
+  public int getColumn() {
+    return column;
+  }
 
-	/**
-	 * Returns textual representation of position in text.
-	 * Example: <code>[134:33]</code>
-	 *
-	 * @see Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "[" + line + ":" + column + "]";
-	}
+  /**
+   * Returns textual representation of position in text.
+   * Example: <code>[134:33]</code>
+   *
+   * @see Object#toString()
+   */
+  @Override
+  public String toString() {
+    return "[" + line + ":" + column + "]";
+  }
 
 }

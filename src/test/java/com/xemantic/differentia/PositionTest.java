@@ -25,70 +25,69 @@ import static org.junit.Assume.*;
 import org.junit.Test;
 
 /**
- *
  * <p>
  * Created on Jan 19, 2009
  */
 public class PositionTest {
 
-	/**
-	 * Test method for {@link Position#Position(int, int)} - invalid arguments.
-	 */
-	@Test(expected=IllegalArgumentException.class)
-	public final void newTextPosition00() {
-		new Position(-1, -1);
-	}
+  /**
+   * Test method for {@link Position#Position(int, int)} - invalid arguments.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void newTextPosition00() {
+    new Position(-1, -1);
+  }
 
-	/**
-	 * Test method for {@link Position#Position(int, int)} - invalid arguments.
-	 */
-	@Test(expected=IllegalArgumentException.class)
-	public final void newTextPosition01() {
-		new Position(-1, 0);
-	}
+  /**
+   * Test method for {@link Position#Position(int, int)} - invalid arguments.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void newTextPosition01() {
+    new Position(-1, 0);
+  }
 
-	/**
-	 * Test method for {@link Position#Position(int, int)} - invalid arguments.
-	 */
-	@Test(expected=IllegalArgumentException.class)
-	public final void newTextPosition10() {
-		new Position(0, -1);
-	}
+  /**
+   * Test method for {@link Position#Position(int, int)} - invalid arguments.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public final void newTextPosition10() {
+    new Position(0, -1);
+  }
 
-	/**
-	 * Test method for {@link Position#Position(int, int)} - valid arguments.
-	 */
-	public final void newTextPosition11() {
-		new Position(0, 0);
-		new Position(10, 23);
-	}
+  /**
+   * Test method for {@link Position#Position(int, int)} - valid arguments.
+   */
+  public final void newTextPosition11() {
+    new Position(0, 0);
+    new Position(10, 23);
+  }
 
-	/**
-	 * Test method for {@link Position#getLine()}.
-	 */
-	@Test
-	public final void getLine() {
-		final Position p = new Position(313, 42);
-		assertEquals("Invalid line", 313, p.getLine());
-		assumeThat(p.getLine(), is(313));
-	}
+  /**
+   * Test method for {@link Position#getLine()}.
+   */
+  @Test
+  public final void getLine() {
+    final Position p = new Position(313, 42);
+    assertEquals("Invalid line", 313, p.getLine());
+    assumeThat(p.getLine(), is(313));
+  }
 
-	/**
-	 * Test method for {@link Position#getColumn()}.
-	 */
-	@Test
-	public final void getColumn() {
-		final Position p = new Position(313, 42);
-		assumeThat(p.getColumn(), is(42));
-	}
+  /**
+   * Test method for {@link Position#getColumn()}.
+   */
+  @Test
+  public final void getColumn() {
+    final Position p = new Position(313, 42);
+    assumeThat(p.getColumn(), is(42));
+  }
 
-	/**
-	 * Test method for {@link Position#toString()}.
-	 */
-	@Test
-	public final void testToString() {
-		final Position p = new Position(313, 42);
-		assertThat(p.toString(), is("[313:42]"));
-	}
+  /**
+   * Test method for {@link Position#toString()}.
+   */
+  @Test
+  public final void testToString() {
+    final Position p = new Position(313, 42);
+    assertThat(p.toString(), is("[313:42]"));
+  }
 
 }
