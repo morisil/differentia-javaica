@@ -15,7 +15,7 @@ comparing it to expected Java files. While the generators were being
 develop continuously, I discovered that just comparing textual content is not flexible enough
 and instead we have to verify the logical structure of generated code.
 
-Note: this project is only supporting Java 1.5. These days I would rather use:
+**Note:** this project is only supporting Java 1.5. These days I would rather use:
 
 https://github.com/google/compile-testing
   
